@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container jumbotron" style="background-color: steelblue;">
+    <h3> Your Article </h3>
+    <hr>
+    <p>Thank you for sharing your knowledge {{session["user_name"]}}</p>
+</div>
+
+<div class="container">
+    <a href="{{url_for('users.addarticle')}}" class="btn btn-success">Add Article</a>
+    <a href="{{url_for('users.account')}}" class="btn btn-success">My Account</a>
+    <hr>
+    
+    {% if articles %}
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Date</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for art in articles %}
+            <tr>
+                <td><a href="{{url_for('articles.articleFirst', id = art.id)}}" class="btn btn-dark">{{art.title}}</a></td>
+                <td>{{art.author}}</td>
+                <td>{{art.created_date}}</td>
+                <td><a href="{{url_for('users.edit', id = art.id)}}" class="btn btn-warning">Update</a></td>
+                <td><a href="{{url_for('users.delete', id = art.id)}}" class="btn btn-danger">Delete</a></td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+    <div>There is no article!</div>
+    {% endif %}
+
+</div>
+{% endblock body %}

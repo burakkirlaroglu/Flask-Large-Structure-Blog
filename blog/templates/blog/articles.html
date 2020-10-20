@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container jumbotron" style="background-color:lightblue">
+    <h3>Articles</h3>
+    <hr>
+    <p>Lets Learn!</p>
+</div>
+{% if articlesAll %}
+<div class="container">
+    <ul class="list-group ">
+        {% for art in articlesAll %}
+        <li class="list-group-item list-group-item-primary list-group-item-action"><a class="btn"
+                href="{{url_for('articles.articleFirst', id = art.id)}}">{{art.title}}</a><br><small>Author:{{art.author}}</small></li>
+        {% endfor %}
+    </ul>
+</div>
+{% else %}
+<div class="container">
+<div class="alert alert-danger">Articles will show in here</div>
+</div>
+{% endif %}
+{% endblock body %}

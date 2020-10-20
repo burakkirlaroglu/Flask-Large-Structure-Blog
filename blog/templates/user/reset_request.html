@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% from "helpers/formhelpers.html" import render_field %}
+<div class="container-fluid">
+    <div class="row no-gutter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 col-xl-7 mx-auto">
+                            <h3 class="display-4">Reset Password!</h3>
+                            <p class="text-muted mb-4">Enter Email!</p>
+                            <form method="POST">
+                                {{ form.csrf_token }}
+                                <div class="form-group mb-3">
+                                    {{ render_field(form.email, class="form-control rounded-pill border-0 shadow-sm px-4") }}
+                                </div>
+                                {{render_field(form.submit, class="btn btn-dark btn-block text-uppercase mb-2 rounded-pill shadow-sm")}}
+                                
+                                <div class="text-center d-flex justify-content-between mt-4">
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- End -->
+            </div>
+        </div><!-- End -->
+    </div>
+</div>
+{% endblock body %}

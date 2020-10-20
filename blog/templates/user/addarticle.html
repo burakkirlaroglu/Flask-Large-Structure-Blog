@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+{% from "helpers/formhelpers.html" import render_field %}
+<div class = "container jumbotron">
+    <h3> Your Article </h3>
+    <h5>Thank you for sharing your knowledge {{session["user_name"]}}</h5>
+    <hr>
+</div>
+<div class = "container">
+<form method="POST">
+    {{ render_field(form.title, class="form-control") }}
+    {{ render_field(form.content, class="form-control") }}
+    <button type="submit" class="btn btn-primary">Add Article</button>
+</form>
+</div>
+{% endblock body %}

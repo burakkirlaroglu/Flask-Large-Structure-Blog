@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+{% from "helpers/formhelpers.html" import render_field %}
+<div class="container jumbotron" style="background-color: burlywood">
+    <h3>Article</h3>
+    <hr>
+</div>
+<div class="container">
+    {% if articleFirst %}
+        <h4>{{articleFirst.title}}</h4>
+        <hr>
+        Yazar : {{articleFirst.author}}
+        <hr>
+        Tarih : {{articleFirst.created_date}}
+        <hr>
+        {{articleFirst.content|safe}}    
+    {% else %}
+        <div class = "alert alert-danger"> There is no article... </div>
+    {% endif %}
+</div>
+<hr>
+<div class="container">
+    <div class="row flex-column">
+        <h4>Comments</h4>
+        <hr>
+        {% for comment in comments %}
+                <h6>name: {{ comment.name|e }}</h6>
+                <h6>email: {{ comment.email|e }}</h6>
+                <h6>Comment: {{comment.message}}</h6>
+        {% endfor %}
+    </div>
+</div>
+<hr>
+<div class="comment-form">
+    <h4>Article Comment</h4>
+    <form method="POST">
+        <div class="form-group">
+            <div class="form-group name">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Enter name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter name'">
+            </div>
+            <div class="form-group email">
+                <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" onfocus="this.placeholder = ''" onblur="this.placeholder = 'message'" required=""></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary text-uppercase">Add Comment</button>
+        </div>
+    </form>
+</div>
+
+{% endblock body %}
